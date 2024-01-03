@@ -10,7 +10,7 @@ This is a reward program to calculate points in the past three months based on e
 - **Method:** GET
 - **Path Parameter:** customerID 
 - **Path:** /api/reward/{customerID}
-- **Description:** Retrieve points of a specific customerID.
+- **Description:** Retrieve points of past three months given a specific customerID.
 
 ### Response: 
 The response JSON contain list of objects and each object has three attributes: customerID, month, totalPoints. 
@@ -31,8 +31,16 @@ To retrieve points of a customerID 3 in the past three months.
 
 GET request: **/api/reward/3**  
 
-
 GET Response: 
+
+The response JSON represents the reward points earned by the customer 3 over past three months:
+
+    October 90 points; 
+
+    November 130 points; 
+    
+    December 170 points.
+
 ```
 [
    {
@@ -52,10 +60,7 @@ GET Response:
    }
 ]
 ```
-The response JSON represents the reward points earned by the customer 3 over past three months:
-    October 90 points; 
-    November 130 points; 
-    December 170 points.
+
 
 ### Project Structure
 ```
