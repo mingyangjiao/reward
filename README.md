@@ -21,8 +21,11 @@ The response JSON contain list of objects and each object has three attributes: 
 
 
 ### Examples:
-Retrieve points of a customerID 3 in the past three months.
-GET request: /api/reward/3
+
+To retrieve points of a customerID 3 in the past three months.
+
+GET request: **/api/reward/3**  
+
 
 GET Response: 
 ```
