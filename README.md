@@ -13,17 +13,17 @@ This is a reward program to calculate points in the past three months based on e
 - **Description:** Retrieve points of past three months given a specific customerID.
 
 ### Response: 
-The response JSON contain list of objects and each object has three attributes: customerID, month, totalPoints. 
+The response JSON contain array of objects and each object has three attributes: customerID, month, totalPoints. 
 
 - customerID: unique ID of the customer.
 - month: The month for which the total reward points are calculated (from 1 to 12).
 - totalPoints: The reward points of customerID in the given month.
 
-The result list is sorted by month in ascending order. 
+The result objects is sorted by month in ascending order. 
 
-For customer didn't earn any point in specific month, the result list will NOT include the month with 0 point.
+For customer didn't earn any point in specific month, the result objects will NOT include the month with 0 point.
 
-For customer ID that didn't exist, the result list will be empty. 
+For customer ID that didn't exist, the response JSON will be empty. 
 
 ### Examples:
 
