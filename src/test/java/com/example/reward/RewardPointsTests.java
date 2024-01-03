@@ -24,7 +24,7 @@ public class RewardPointsTests {
     private TestRestTemplate template;
 
     @Autowired
-    private ObjectMapper objectMapper; 
+    private ObjectMapper objectMapper;
 
     private Long customerID;
     private String requestURL = "/api/reward/";
@@ -55,7 +55,7 @@ public class RewardPointsTests {
 
         customerID = 2L;
         ResponseEntity<String> responseEntity = template.getForEntity(requestURL + customerID, String.class);
-        
+
         JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
 
         assertEquals(customerID, jsonNode.get(0).get("customerID").asLong());
@@ -69,7 +69,7 @@ public class RewardPointsTests {
 
         customerID = 3L;
         ResponseEntity<String> responseEntity = template.getForEntity(requestURL + customerID, String.class);
-        
+
         JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
 
         assertEquals(customerID, jsonNode.get(0).get("customerID").asLong());
@@ -92,7 +92,7 @@ public class RewardPointsTests {
 
         customerID = 4L;
         ResponseEntity<String> responseEntity = template.getForEntity(requestURL + customerID, String.class);
-        
+
         JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
 
         assertTrue(jsonNode.isEmpty());
@@ -105,7 +105,7 @@ public class RewardPointsTests {
 
         customerID = 5L;
         ResponseEntity<String> responseEntity = template.getForEntity(requestURL + customerID, String.class);
-        
+
         JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
 
         assertEquals(customerID, jsonNode.get(0).get("customerID").asLong());
@@ -113,14 +113,44 @@ public class RewardPointsTests {
         assertEquals(50, jsonNode.get(0).get("totalPoints").asInt());
     }
 
-    // test case for customerID didn't exist
+    // test case for customerID with purchase in current month
+    // transactions of past three months e.g. 2023.10.2 - 2024.1.2
+    // so return result will be 4 months including the October November December and January
+    // For October, transactions before 2023.10.2 should not be included
     @Test
     void customer6() throws Exception {
+        customerID = 6L;
+        ResponseEntity<String> responseEntity = template.getForEntity(requestURL + customerID, String.class);
+
+        JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
+
+        assertEquals(customerID, jsonNode.get(0).get("customerID").asLong());
+        assertEquals(1, jsonNode.get(0).get("month").asInt());
+        assertEquals(100, jsonNode.get(0).get("totalPoints").asInt());
+
+        assertEquals(customerID, jsonNode.get(1).get("customerID").asLong());
+        assertEquals(10, jsonNode.get(1).get("month").asInt());
+        assertEquals(50, jsonNode.get(1).get("totalPoints").asInt());
+
+        assertEquals(customerID, jsonNode.get(2).get("customerID").asLong());
+        assertEquals(11, jsonNode.get(2).get("month").asInt());
+        assertEquals(50, jsonNode.get(2).get("totalPoints").asInt());
+
+        assertEquals(customerID, jsonNode.get(3).get("customerID").asLong());
+        assertEquals(12, jsonNode.get(3).get("month").asInt());
+        assertEquals(50, jsonNode.get(3).get("totalPoints").asInt());
+
+    }
+
+    // test case for customerID didn't exist
+    @Test
+    void customer7() throws Exception {
         customerID = 286L;
         ResponseEntity<String> responseEntity = template.getForEntity(requestURL + customerID, String.class);
-        
+
         JsonNode jsonNode = objectMapper.readTree(responseEntity.getBody());
 
         assertTrue(jsonNode.isEmpty());
     }
+
 }

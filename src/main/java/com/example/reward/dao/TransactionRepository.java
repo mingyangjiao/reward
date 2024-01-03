@@ -41,6 +41,13 @@ public class TransactionRepository {
 
         // customer 5
         transactions.add(new Transaction(5L, 100, LocalDate.of(2023, 12, 15)));
+
+        // customer 6
+        transactions.add(new Transaction(6L, 100, LocalDate.of(2024, 1, 1)));
+        transactions.add(new Transaction(6L, 100, LocalDate.of(2024, 1, 2)));
+        transactions.add(new Transaction(6L, 100, LocalDate.of(2023, 12, 2)));
+        transactions.add(new Transaction(6L, 100, LocalDate.of(2023, 11, 2)));
+        transactions.add(new Transaction(6L, 100, LocalDate.of(2023, 10, 26)));
     }
 
     public List<Transaction> findTransactionsByCustomerID(Long customerID) {
