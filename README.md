@@ -6,13 +6,13 @@ This is a reward program to calculate points in the past three months based on e
 
 ## Restful API Design
 
-##Request
+### Request
 - **Method:** GET
 - **Path Parameter:** customerID 
 - **Path:** /api/reward/{customerID}
 - **Description:** Retrieve points of a specific customerID.
 
-##Response: 
+### Response: 
 The response JSON contain list of objects and each object has three attributes: customerID, month, totalPoints. The return List is sorted by month in ascending order. For customer didn't earn any point, list will be empty.
 
 - customerID: unique ID of the customer.
@@ -20,12 +20,12 @@ The response JSON contain list of objects and each object has three attributes: 
 - totalPoints: The reward points of customerID in the given month.
 
 
-##Examples:
+### Examples:
 Retrieve points of a customerID 3 in the past three months.
 GET request: /api/reward/3
 
 GET Response: 
-
+```
 [
    {
       "customerID":3,
@@ -43,14 +43,14 @@ GET Response:
       "totalPoints":170
    }
 ]
-
+```
 The response JSON represents the reward points earned by the customer 3 over past three months:
     October 90 points; 
     November 130 points; 
     December 170 points.
 
 ### Project Structure
-
+```
 ├── RewardApplication.java
 ├── controller
 │   └── RewardController.java
@@ -62,3 +62,4 @@ The response JSON represents the reward points earned by the customer 3 over pas
 │   └── RewardPoint.java
 └── service
     └── RewardService.java
+```
