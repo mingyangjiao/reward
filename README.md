@@ -33,13 +33,7 @@ GET request: **/api/reward/3**
 
 GET Response: 
 
-The response JSON represents the reward points earned by the customer 3 over past three months:
-
-    October 90 points; 
-
-    November 130 points; 
-    
-    December 170 points.
+The response JSON represents the reward points earned by the customer 3 over past three months:October 90 points; November 130 points; December 170 points.
 
 ```
 [
